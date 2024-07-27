@@ -4,11 +4,11 @@ import mysql.connector
 
 app = Flask(__name__)
 
-# Database connection (assumed to be set up)
+# Doing Database connection here
 db = mysql.connector.connect(
     host="localhost",
-    user="your_username",
-    password="your_password",
+    user="username",
+    password="password",
     database="susan_sushi_shop"
 )
 
@@ -19,7 +19,7 @@ def calculate_discount(total_pieces, order_time):
     elif total_pieces >= 10:
         discount = 0.10
     
-    # Check for lunch deal (11:00 - 14:00)
+    # Checking for lunch deal (11:00 - 14:00)
     if 11 <= order_time.hour < 14:
         discount = max(discount, 0.20)
     
@@ -31,7 +31,7 @@ def add_to_cart():
     sushi_a = data.get('sushiA', 0)
     sushi_b = data.get('sushiB', 0)
     
-    # Calculate total price and apply discount
+    # Calculating total price and apply discount
     total_pieces = sushi_a + sushi_b
     total_price = (sushi_a * 3) + (sushi_b * 4)
     discount = calculate_discount(total_pieces, datetime.now())
